@@ -1,103 +1,170 @@
-import Image from "next/image";
+'use client'
+import { useMotionValueEvent, useScroll, useTransform } from "framer-motion";
+import * as motion from "motion/react-client"
+import { useState } from "react";
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+export default function ShrinkingBox() {
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    const [middleBoxProps, setMiddleBoxProps] = useState({
+        text: "At Dropbox, our Brand Guidelines help us infuse everything we make with identity.",
+        bg: "#fff",
+        colour: "#0061fe",
+        transitionDuration: "0.4s",
+        width: "calc(-2px + min(800px, -64px + min(100vw, 100vh)))"
+    })
+
+    const { scrollYProgress } = useScroll();
+
+    const middleBoxWidth = useTransform(scrollYProgress, [0.5, 1], [Math.min(500, Math.min(global?.window?.innerHeight, global?.window?.innerWidth) - 64), global?.window?.innerWidth > 991 ? 89 : 80])
+
+    const box1XProp = useTransform(scrollYProgress, [0, 1], [-2000, 0])
+    const box1YProp = useTransform(scrollYProgress, [0, 1], [-2000, 0])
+
+    const box2XProp = useTransform(scrollYProgress, [0, 1], [100, 0])
+    const box2YProp = useTransform(scrollYProgress, [0, 1], [-1200, 0])
+
+    const box3XProp = useTransform(scrollYProgress, [0, 1], [1200, 0])
+    const box3YProp = useTransform(scrollYProgress, [0, 1], [10, 0])
+
+    const box4XProp = useTransform(scrollYProgress, [0, 1], [2000, 0])
+    const box4YProp = useTransform(scrollYProgress, [0, 1], [-2000, 0])
+
+    const box5XProp = useTransform(scrollYProgress, [0, 1], [-2000, 0])
+    const box5YProp = useTransform(scrollYProgress, [0, 1], [2000, 0])
+
+    const box6XProp = useTransform(scrollYProgress, [0, 1], [-1200, 0])
+    const box6YProp = useTransform(scrollYProgress, [0, 1], [100, 0])
+
+    const box7XProp = useTransform(scrollYProgress, [0, 1], [100, 0])
+    const box7YProp = useTransform(scrollYProgress, [0, 1], [1200, 0])
+
+    const box8XProp = useTransform(scrollYProgress, [0, 1], [2000, 0])
+    const box8YProp = useTransform(scrollYProgress, [0, 1], [2000, 0])
+
+    const boxesScale = useTransform(scrollYProgress, [0, 1], [2, 1])
+
+    useMotionValueEvent(scrollYProgress, "change", (latest) => {
+        console.log(latest);
+        if (latest <= 0.12043718301937157) {
+            setMiddleBoxProps({
+                text: "At Dropbox, our Brand Guidelines help us infuse everything we make with identity.",
+                bg: "#fff",
+                colour: "#0061fe",
+                transitionDuration: "0.4s",
+                width: "calc(-2px + min(800px, -64px + min(100vw, 100vh)))"
+            })
+        }
+        else if (latest <= 0.5) {
+            setMiddleBoxProps({
+                text: "From icons to illustration, logos to language, this collection is the foundation for how Dropbox looks, feels, and sounds like Dropbox.",
+                bg: "#0061fe",
+                colour: "#fff",
+                transitionDuration: "0.4s",
+                width: "min(500px, min(100vw, 100vh) - 64px)"
+            })
+        }
+        else {
+            setMiddleBoxProps({
+                text: "",
+                bg: "#0061fe",
+                colour: "#fff",
+                transitionDuration: "0s",
+                width: middleBoxWidth.get() + "px"
+            })
+            console.log(middleBoxWidth.get() + "px");
+
+        }
+    })
+
+    return (
+        <main className="main">
+            <section className="middle-wrap">
+                <motion.div
+                    className={`middle phase-${scrollYProgress.get() <= 0.12043718301937157 ? "one" : scrollYProgress.get() <= 0.5 ? "two" : "three"} `}
+                    style={{
+                        background: middleBoxProps.bg,
+                        color: middleBoxProps.colour,
+                        transitionDuration: middleBoxProps.transitionDuration,
+                        height: middleBoxProps.width,
+                        width: middleBoxProps.width,
+                    }}
+                >
+                    <div className="middle-text-cont">
+                        <motion.p className="middle-text-one" style={{
+                            opacity: scrollYProgress.get() >= 0.5 ? 0 : scrollYProgress.get() <= 0.12043718301937157 ? 1 : 0,
+                            transitionDuration: middleBoxProps.transitionDuration
+                        }}>At Dropbox, our Brand Guidelines help us infuse everything we make with identity.</motion.p>
+                        <motion.p className="middle-text-two" style={{
+                            opacity: scrollYProgress.get() <= 0.5 && scrollYProgress.get() >= 0.12043718301937157 ? 1 : 0,
+                            transitionDuration: middleBoxProps.transitionDuration
+                        }}>From icons to illustration, logos to language, this collection is the foundation for how Dropbox looks, feels, and sounds like Dropbox.</motion.p>
+                        <div className="middle-logo">
+                            <svg width="60px" height="60px" viewBox="0 -19 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
+                                <g fill={middleBoxProps.colour}>
+                                    <polygon points="63.9945638 0 0 40.7712563 63.9945638 81.5425125 128 40.7712563">
+                                    </polygon>
+                                    <polygon points="192.000442 0 128 40.7750015 192.000442 81.5500031 256.000885 40.7750015">
+                                    </polygon>
+                                    <polygon points="0 122.321259 63.9945638 163.092516 128 122.321259 63.9945638 81.5500031">
+                                    </polygon>
+                                    <polygon points="192 81.5500031 128 122.324723 192 163.099442 256 122.324723">
+                                    </polygon>
+                                    <polygon points="64 176.771256 128.005436 217.542513 192 176.771256 128.005436 136">
+                                    </polygon>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                </motion.div>
+            </section>
+            <section className={`cards-cont ${box1XProp.get() == 0 ? "done" : ""}`}>
+                <motion.div
+                    className="brand-card"
+                    style={{
+                        transform: `translateX(${box1XProp.get()}px) translateY(${box1YProp.get()}px) scale(${boxesScale.get()})`
+                    }}
+                >
+                    <div className="card-image">
+                        <img src="/images/framework.png" alt="Framework" />
+                    </div>
+                    <div className="card-text">Framework</div>
+                </motion.div>
+                <motion.div
+                    style={{
+                        transform: `translateX(${box2XProp.get()}px) translateY(${box2YProp.get()}px) scale(${boxesScale.get()})`
+                    }}
+                >Voice & Tone</motion.div>
+                <motion.div
+                    style={{
+                        transform: `translateX(${box3XProp.get()}px) translateY(${box3YProp.get()}px) scale(${boxesScale.get()})`
+                    }}
+                >Logo</motion.div>
+                <motion.div
+                    style={{
+                        transform: `translateX(${box4XProp.get()}px) translateY(${box4YProp.get()}px) scale(${boxesScale.get()})`
+                    }}
+                >Typography</motion.div>
+                <motion.div
+                    style={{
+                        transform: `translateX(${box5XProp.get()}px) translateY(${box5YProp.get()}px) scale(${boxesScale.get()})`
+                    }}
+                >Iconogrophy</motion.div>
+                <motion.div
+                    style={{
+                        transform: `translateX(${box6XProp.get()}px) translateY(${box6YProp.get()}px) scale(${boxesScale.get()})`
+                    }}
+                >Colour</motion.div>
+                <motion.div
+                    style={{
+                        transform: `translateX(${box7XProp.get()}px) translateY(${box7YProp.get()}px) scale(${boxesScale.get()})`
+                    }}
+                >Imagery</motion.div>
+                <motion.div
+                    style={{
+                        transform: `translateX(${box8XProp.get()}px) translateY(${box8YProp.get()}px) scale(${boxesScale.get()})`
+                    }}
+                >Motion</motion.div>
+            </section>
+        </main >
+    );
 }

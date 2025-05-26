@@ -1,4 +1,4 @@
-# Dropbox Brand Website Clone
+# Brand Dropbox Website Clone
 
 A modern clone of the Dropbox brand website built with Next.js, TypeScript, and Tailwind CSS.
 
