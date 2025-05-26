@@ -124,10 +124,9 @@ export default function ShrinkingBox() {
                         transform: `translateX(${box1XProp.get()}px) translateY(${box1YProp.get()}px) scale(${boxesScale.get()})`
                     }}
                 >
-                    <div className="card-image">
-                        <img src="/images/framework.png" alt="Framework" />
-                    </div>
-                    <div className="card-text">Framework</div>
+                    <span>
+                        Framework
+                    </span>
                 </motion.div>
                 <motion.div
                     style={{
